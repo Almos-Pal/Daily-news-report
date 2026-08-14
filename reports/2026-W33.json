@@ -2,9 +2,9 @@
   "id": "2026-W33",
   "weekStart": "2026-08-10",
   "weekEnd": "2026-08-16",
-  "generatedAt": "2026-08-14T14:00:00.000Z",
-  "title": "Sample week 33 — fixture for the reader app",
-  "tldr": "This bundled issue exists so the Expo app can render before a cloud agent writes a real brief. Treat every item below as UI fixture copy, not reporting.",
+  "generatedAt": "2026-08-14T14:45:00.000Z",
+  "title": "Week 33: Cursor Builds, Apple spyware alerts, and a dry Danube at Paks",
+  "tldr": "Cursor shipped background Builds so cloud agents start faster. Apple warned users in 110 countries about mercenary spyware and kept fighting over App Store link-out fees. In Hungary the government is raising the Danube at Paks to keep the nuclear plant cooled while Romania already shut its reactors.",
   "sections": [
     {
       "id": "apple",
@@ -12,16 +12,44 @@
       "language": "en",
       "items": [
         {
-          "headline": "Sample: a developer-facing Apple change this week",
-          "summary": "Fixture. In a real issue this would be a 2–4 sentence account of an iOS, macOS, App Store, or privacy change, with dates and names taken from primary sources.",
-          "whyItMatters": "You live on Apple hardware; this slot is for anything that changes your phone, Mac, or shipping an app.",
+          "headline": "Apple pushed threat notifications to suspected spyware targets in 110 countries",
+          "summary": "On Thursday 13 August Apple told TechCrunch it sent a new round of mercenary-spyware alerts to customers in 110 countries. Recipients now get a lock-screen push that says Apple detected a targeted attack, plus email and account notices, with clearer next steps including Lockdown Mode. Apple says a notification does not prove the device was successfully compromised, but it should still be treated as urgent.",
+          "whyItMatters": "You live on iPhone. If this alert ever appears, it is not a marketing ping — follow Apple's steps and turn on Lockdown Mode.",
           "sources": [
             {
-              "name": "Apple Newsroom",
-              "url": "https://www.apple.com/newsroom/"
+              "name": "TechCrunch",
+              "url": "https://techcrunch.com/2026/08/13/if-apple-sends-you-a-push-notification-alerting-you-to-a-spyware-attack-take-it-seriously/"
+            },
+            {
+              "name": "The Verge",
+              "url": "https://www.theverge.com/tech/980157/did-your-iphone-recieve-an-apple-threat-notification"
             }
           ],
-          "tags": ["sample", "ios"]
+          "tags": ["security", "iphone"]
+        },
+        {
+          "headline": "iOS 27 public beta 3 is out, with a rebuilt Siri for Apple Intelligence devices",
+          "summary": "Apple released the third public iOS 27 beta around 11–12 August via the free Apple Beta Software Program. Reporting says the build tracks the fifth developer beta, claims faster app launches and Photos, and keeps Apple Intelligence plus rebuilt Siri on iPhone 15 Pro and newer. Public iOS 27 is still expected around mid-September with the next iPhone lineup.",
+          "whyItMatters": "Useful if you test betas on a spare device. Do not put a public beta on your daily iPhone 17e this close to a trip or work week unless you accept the instability.",
+          "sources": [
+            {
+              "name": "BetaNews",
+              "url": "https://betanews.com/article/ios-27-public-beta-3-siri-ai/"
+            }
+          ],
+          "tags": ["ios", "beta"]
+        },
+        {
+          "headline": "Apple proposed 5–15% commissions on US off-App Store purchases",
+          "summary": "On 13 August Apple filed its proposed fee schedule in the Epic case for purchases made outside IAP: 15% for standard apps, 10% for several partner/subscription programs, and 5% for Small Business Program apps. The Supreme Court had just declined to pause the lower-court process. Epic still argues the Ninth Circuit's 'necessary costs' test could imply 0% for web link-outs. This is a court filing, not a shipping App Store rule.",
+          "whyItMatters": "If you ship or pay for apps, US store economics may move again. Treat the percentages as Apple's ask, not settled law.",
+          "sources": [
+            {
+              "name": "9to5Mac",
+              "url": "https://9to5mac.com/2026/08/13/apple-proposes-commissions-of-up-to-15-for-off-app-store-purchases-in-the-us/"
+            }
+          ],
+          "tags": ["app-store", "legal"]
         }
       ]
     },
@@ -31,16 +59,20 @@
       "language": "en",
       "items": [
         {
-          "headline": "Sample: Cursor product or cloud-agent news",
-          "summary": "Fixture. Real issues should cite Cursor docs, changelog, or the forum — models, automations, pricing, or agent workflow — not training-cutoff guesses.",
-          "whyItMatters": "This is your editor. Cover what would change how you run agents or ship code this week.",
+          "headline": "Cloud Agents Builds: ready environments, up to 3x faster starts",
+          "summary": "On 13 August Cursor shipped Builds: background copies of a cloud-agent environment with the repo cloned and install already run. New environments use Builds by default; existing ones opt in from the Cloud Agents dashboard Builds tab. Cursor says internal boots are much faster and time-to-first-token about 3x faster, at no extra Cloud Agents cost. Failed builds stay inactive so agents keep the last good environment. Default rollout for remaining environments is set for 17 August.",
+          "whyItMatters": "This is the runtime you wanted for this repo's weekly agent. After GitHub is fully wired in Cursor, enable Builds on the environment so Monday runs do not wait on a cold install.",
           "sources": [
             {
-              "name": "Cursor Docs",
-              "url": "https://cursor.com/docs"
+              "name": "Cursor Changelog",
+              "url": "https://cursor.com/changelog/08-13-26"
+            },
+            {
+              "name": "Cursor Blog",
+              "url": "https://cursor.com/blog/builds"
             }
           ],
-          "tags": ["sample", "agents"]
+          "tags": ["cloud-agents", "builds"]
         }
       ]
     },
@@ -50,35 +82,28 @@
       "language": "en",
       "items": [
         {
-          "headline": "Sample: a model, lab, or regulation item worth knowing",
-          "summary": "Fixture. Prefer lab blogs, official model cards, or primary regulation text over aggregator recaps.",
-          "whyItMatters": "You build with AI tools; this slot is for changes that affect quality, cost, or what you are allowed to use.",
+          "headline": "OpenAI previewed Ultrafast GPT-5.6 Sol at about 14x standard speed",
+          "summary": "On 13 August OpenAI opened a limited preview of Ultrafast, a serving tier for GPT-5.6 Sol on Cerebras hardware. The company claims up to about 750 output tokens per second, roughly 14 times the model's standard speed, aimed at real-time agent and voice workloads. It is not a new model. Access is invite-only while capacity grows; pricing was not published with the preview.",
+          "whyItMatters": "The industry is competing on agent latency, not only quality. Ultrafast is not something you can flip on in Cursor today, but it signals where API coding models are heading.",
           "sources": [
             {
-              "name": "OpenAI Blog",
-              "url": "https://openai.com/news/"
+              "name": "TechCrunch",
+              "url": "https://techcrunch.com/2026/08/13/openai-introduces-ultrafast-a-new-mode-that-makes-gpt-5-6-sol-work-at-14x-the-speed/"
             }
           ],
-          "tags": ["sample"]
-        }
-      ]
-    },
-    {
-      "id": "tech",
-      "title": "Tech",
-      "language": "en",
-      "items": [
+          "tags": ["openai", "inference"]
+        },
         {
-          "headline": "Sample: a platform, security, or infrastructure story",
-          "summary": "Fixture. Use this beat for notable tech that is not primarily Apple, Cursor, or AI — outages, security incidents, or platform policy.",
-          "whyItMatters": "Only include it if it would change how you work, ship, or stay safe this week.",
+          "headline": "Google launched Gemini 3.7 Flash as a generally available fast coding model",
+          "summary": "Reporting on 13–14 August said Google released Gemini 3.7 Flash, a lower-cost model tuned for coding and agent workflows, generally available in a large set of countries. Decrypt contrasted that with OpenAI's invite-only Ultrafast tier: Google's speed SKU is what most developers can actually call today. Confirm current access and pricing in Google's own model docs before switching a stack.",
+          "whyItMatters": "If you compare models for Cursor or side tools, a generally available Flash-class Gemini is a practical option this week; Ultrafast is not.",
           "sources": [
             {
-              "name": "The Verge",
-              "url": "https://www.theverge.com/"
+              "name": "Decrypt",
+              "url": "https://decrypt.co/375580/google-openai-super-fast-ai-models-gemini-flash-gpt-ultrafast"
             }
           ],
-          "tags": ["sample"]
+          "tags": ["google", "gemini"]
         }
       ]
     },
@@ -88,16 +113,32 @@
       "language": "hu",
       "items": [
         {
-          "headline": "Minta: egy hét itthon, ami számít",
-          "summary": "Ez egy UI-minta, nem tudósítás. Éles számban magyar forrásból, természetes magyarsággal kellene leírni, mi történt politikában, gazdaságban, EU-ügyben vagy a mindennapi infrastruktúrában.",
-          "whyItMatters": "Azért van ez a rovat, hogy ne essen ki a magyar valóság a tech-hírek mögül.",
+          "headline": "Paks: fenékküszöb a Dunán, szükség esetén bárkák elsüllyesztése",
+          "summary": "Magyar Péter miniszterelnök szerdán Paksról jelentette be, hogy a rekordalacsony dunai vízállás miatt fenékküszöb építését rendelték el a Paksi Atomerőmű hűtővíz-ellátásának biztosítására, és két 80 méteres bárka irányított elsüllyesztését is előkészítették ideiglenes vízszintemelésre. A Telex és a 444 szakértői magyarázatokkal, a DW és a Reuters pedig a regionális energetikai tétet is leírták. Az erőmű leállását eddig elkerülték; a szomszédos Románia cernavodai blokkjait csütörtökön lekapcsolták.",
+          "whyItMatters": "Ez nem távoli energetikai hír: a magyar áramtermelés, a Duna és a nyári hőhullám közvetlenül ide tartozik.",
           "sources": [
             {
               "name": "Telex",
-              "url": "https://telex.hu/"
+              "url": "https://telex.hu/belfold/2026/08/12/paks-atomeromu-duna-vizallas-fenekkuszob"
+            },
+            {
+              "name": "444",
+              "url": "https://444.hu/2026/08/12/magyar-fenekkuszobot-epitenek-a-dunan-paksnal-szukseg-eseten-ket-barkat-is-elsullyesztenek"
             }
           ],
-          "tags": ["sample"]
+          "tags": ["paks", "duna", "energia"]
+        },
+        {
+          "headline": "Az Alkotmánybíróság visszautasította a kekva-államosítást támadó indítványt",
+          "summary": "Péntek reggel az Alkotmánybíróság közzétett végzésében visszautasította azt az ellenzéki indítványt, amely a közfeladatot ellátó közérdekű vagyonkezelő alapítványok államosítását lehetővé tevő alaptörvény-módosítást támadta. Az Index szerint a testület a Fidesz–KDNP többi, csütörtökön tárgyalt indítványáról — köztük a Sulyok Tamást érintő szabályról — egyelőre nem döntött. A visszautasítás indoka: a kért vizsgálat tartalmi kontroll lenne, nem eljárási.",
+          "whyItMatters": "Alkotmányos és vagyonkezelési vita, amely a magyar intézményrendszert ezen a héten is alakítja — érdemes követni a még eldöntetlen indítványokat.",
+          "sources": [
+            {
+              "name": "Index",
+              "url": "https://index.hu/belfold/2026/08/14/alkotmanybirosag-visszautasitots-alaptorveny-modositas-kekva/"
+            }
+          ],
+          "tags": ["alkotmanybirosag"]
         }
       ]
     },
@@ -107,16 +148,20 @@
       "language": "en",
       "items": [
         {
-          "headline": "Sample: a world story with a real impact",
-          "summary": "Fixture. Skip generic wire copy. Keep items that affect travel, money, safety, or civic life for someone in Hungary.",
-          "whyItMatters": "The point of this section is staying in touch with the world without a second news app.",
+          "headline": "Romania shut Cernavodă as the Danube drought hits European nuclear cooling",
+          "summary": "Romania disconnected its Cernavodă reactors this week after Danube levels fell too low for cooling intakes; BBC reported the second 706 MW unit came off the grid around midday Thursday. Hungary has so far kept Paks running with emergency river works. AP noted Budapest water levels near record lows and more heat in the forecast. Shipping on the Danube is also constrained.",
+          "whyItMatters": "This is the regional frame around Paks: power imports, heat, and river traffic in the neighbourhood, not only a Hungarian construction story.",
           "sources": [
             {
               "name": "BBC News",
-              "url": "https://www.bbc.com/news"
+              "url": "https://www.bbc.co.uk/news/articles/cqlxpq5q799o"
+            },
+            {
+              "name": "AP News",
+              "url": "https://apnews.com/article/danube-drought-energy-crisis-hungary-romania-serbia-229e089c30821889548354d7da289084"
             }
           ],
-          "tags": ["sample"]
+          "tags": ["danube", "energy", "climate"]
         }
       ]
     }
