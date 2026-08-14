@@ -1,0 +1,12 @@
+{
+  "latest": "2026-W33",
+  "issues": [
+    {
+      "id": "2026-W33",
+      "weekStart": "2026-08-10",
+      "weekEnd": "2026-08-16",
+      "title": "Sample week 33 — fixture for the reader app",
+      "path": "reports/2026-W33.json"
+    }
+  ]
+}

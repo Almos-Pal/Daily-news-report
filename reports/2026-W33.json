@@ -1,0 +1,124 @@
+{
+  "id": "2026-W33",
+  "weekStart": "2026-08-10",
+  "weekEnd": "2026-08-16",
+  "generatedAt": "2026-08-14T14:00:00.000Z",
+  "title": "Sample week 33 — fixture for the reader app",
+  "tldr": "This bundled issue exists so the Expo app can render before a cloud agent writes a real brief. Treat every item below as UI fixture copy, not reporting.",
+  "sections": [
+    {
+      "id": "apple",
+      "title": "Apple",
+      "language": "en",
+      "items": [
+        {
+          "headline": "Sample: a developer-facing Apple change this week",
+          "summary": "Fixture. In a real issue this would be a 2–4 sentence account of an iOS, macOS, App Store, or privacy change, with dates and names taken from primary sources.",
+          "whyItMatters": "You live on Apple hardware; this slot is for anything that changes your phone, Mac, or shipping an app.",
+          "sources": [
+            {
+              "name": "Apple Newsroom",
+              "url": "https://www.apple.com/newsroom/"
+            }
+          ],
+          "tags": ["sample", "ios"]
+        }
+      ]
+    },
+    {
+      "id": "cursor",
+      "title": "Cursor",
+      "language": "en",
+      "items": [
+        {
+          "headline": "Sample: Cursor product or cloud-agent news",
+          "summary": "Fixture. Real issues should cite Cursor docs, changelog, or the forum — models, automations, pricing, or agent workflow — not training-cutoff guesses.",
+          "whyItMatters": "This is your editor. Cover what would change how you run agents or ship code this week.",
+          "sources": [
+            {
+              "name": "Cursor Docs",
+              "url": "https://cursor.com/docs"
+            }
+          ],
+          "tags": ["sample", "agents"]
+        }
+      ]
+    },
+    {
+      "id": "ai",
+      "title": "AI",
+      "language": "en",
+      "items": [
+        {
+          "headline": "Sample: a model, lab, or regulation item worth knowing",
+          "summary": "Fixture. Prefer lab blogs, official model cards, or primary regulation text over aggregator recaps.",
+          "whyItMatters": "You build with AI tools; this slot is for changes that affect quality, cost, or what you are allowed to use.",
+          "sources": [
+            {
+              "name": "OpenAI Blog",
+              "url": "https://openai.com/news/"
+            }
+          ],
+          "tags": ["sample"]
+        }
+      ]
+    },
+    {
+      "id": "tech",
+      "title": "Tech",
+      "language": "en",
+      "items": [
+        {
+          "headline": "Sample: a platform, security, or infrastructure story",
+          "summary": "Fixture. Use this beat for notable tech that is not primarily Apple, Cursor, or AI — outages, security incidents, or platform policy.",
+          "whyItMatters": "Only include it if it would change how you work, ship, or stay safe this week.",
+          "sources": [
+            {
+              "name": "The Verge",
+              "url": "https://www.theverge.com/"
+            }
+          ],
+          "tags": ["sample"]
+        }
+      ]
+    },
+    {
+      "id": "hungary",
+      "title": "Magyarország",
+      "language": "hu",
+      "items": [
+        {
+          "headline": "Minta: egy hét itthon, ami számít",
+          "summary": "Ez egy UI-minta, nem tudósítás. Éles számban magyar forrásból, természetes magyarsággal kellene leírni, mi történt politikában, gazdaságban, EU-ügyben vagy a mindennapi infrastruktúrában.",
+          "whyItMatters": "Azért van ez a rovat, hogy ne essen ki a magyar valóság a tech-hírek mögül.",
+          "sources": [
+            {
+              "name": "Telex",
+              "url": "https://telex.hu/"
+            }
+          ],
+          "tags": ["sample"]
+        }
+      ]
+    },
+    {
+      "id": "world",
+      "title": "World",
+      "language": "en",
+      "items": [
+        {
+          "headline": "Sample: a world story with a real impact",
+          "summary": "Fixture. Skip generic wire copy. Keep items that affect travel, money, safety, or civic life for someone in Hungary.",
+          "whyItMatters": "The point of this section is staying in touch with the world without a second news app.",
+          "sources": [
+            {
+              "name": "BBC News",
+              "url": "https://www.bbc.com/news"
+            }
+          ],
+          "tags": ["sample"]
+        }
+      ]
+    }
+  ]
+}
