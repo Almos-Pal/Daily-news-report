@@ -7,7 +7,6 @@ import {
   writeCache,
   writeCachedIssue,
 } from './cache';
-import { isStale } from './dates';
 import { parseIndex, parseIssue } from './parse';
 
 const parsedIndex = parseIndex(bundledIndexJson);
@@ -24,25 +23,46 @@ const bundledIssues: Record<string, Issue> = {
   [bundledSample.id]: bundledSample,
 };
 
-function feedBaseUrl(): string | null {
+/** GitHub-as-CMS. Override with EXPO_PUBLIC_FEED_BASE_URL if the repo/branch changes. */
+const DEFAULT_FEED_BASE =
+  'https://raw.githubusercontent.com/Almos-Pal/Daily-news-report/main';
+
+function feedBaseUrl(): string {
   const value = process.env.EXPO_PUBLIC_FEED_BASE_URL?.trim();
-  return value ? value.replace(/\/$/, '') : null;
+  return (value || DEFAULT_FEED_BASE).replace(/\/$/, '');
 }
 
-async function fetchJson(url: string): Promise<unknown> {
-  const response = await fetch(url);
+async function fetchJson(url: string, bustCache = false): Promise<unknown> {
+  const target = bustCache ? `${url}${url.includes('?') ? '&' : '?'}t=${Date.now()}` : url;
+  const response = await fetch(target, {
+    headers: { Accept: 'application/json' },
+  });
   if (!response.ok) {
     throw new Error(`Feed request failed (${response.status})`);
   }
   return response.json();
 }
 
-function bundledFallback(): { index: ReportIndex; issue: Issue; meta: FeedMeta } {
+function bundledFallback(error?: string): {
+  index: ReportIndex;
+  issue: Issue;
+  meta: FeedMeta;
+  error?: string;
+} {
   return {
     index: bundledIndex,
     issue: bundledSample,
     meta: { fetchedAt: Date.now(), source: 'bundled' },
+    error,
   };
+}
+
+async function issueFromIndex(index: ReportIndex): Promise<Issue> {
+  return (
+    (await readCachedIssue(index.latest)) ??
+    bundledIssues[index.latest] ??
+    bundledSample
+  );
 }
 
 export async function loadLatest(forceRefresh = false): Promise<{
@@ -54,59 +74,27 @@ export async function loadLatest(forceRefresh = false): Promise<{
   const base = feedBaseUrl();
   const cached = await readCachedIndex();
 
-  if (!forceRefresh && cached && !isStale(cached.fetchedAt)) {
-    const issue =
-      (await readCachedIssue(cached.index.latest)) ??
-      bundledIssues[cached.index.latest] ??
-      bundledSample;
-    return {
-      index: cached.index,
-      issue,
-      meta: { fetchedAt: cached.fetchedAt, source: 'cache' },
-    };
-  }
-
-  if (base) {
-    try {
-      const index = parseIndex(await fetchJson(`${base}/reports/index.json`));
-      if (!index) throw new Error('Invalid index.json');
-      const summary = index.issues.find((entry) => entry.id === index.latest) ?? index.issues[0];
-      if (!summary) throw new Error('Index has no issues');
-      const issue = parseIssue(await fetchJson(`${base}/${summary.path}`));
-      if (!issue) throw new Error('Invalid issue JSON');
-      const fetchedAt = await writeCache(index, issue);
-      return { index, issue, meta: { fetchedAt, source: 'remote' } };
-    } catch (error) {
-      const message = error instanceof Error ? error.message : 'Could not refresh feed';
-      if (cached) {
-        const issue =
-          (await readCachedIssue(cached.index.latest)) ??
-          bundledIssues[cached.index.latest] ??
-          bundledSample;
-        return {
-          index: cached.index,
-          issue,
-          meta: { fetchedAt: cached.fetchedAt, source: 'cache' },
-          error: forceRefresh ? message : undefined,
-        };
-      }
-      return { ...bundledFallback(), error: message };
+  try {
+    const index = parseIndex(await fetchJson(`${base}/reports/index.json`, forceRefresh));
+    if (!index) throw new Error('Invalid index.json');
+    const summary = index.issues.find((entry) => entry.id === index.latest) ?? index.issues[0];
+    if (!summary) throw new Error('Index has no issues');
+    const issue = parseIssue(await fetchJson(`${base}/${summary.path}`, forceRefresh));
+    if (!issue) throw new Error('Invalid issue JSON');
+    const fetchedAt = await writeCache(index, issue);
+    return { index, issue, meta: { fetchedAt, source: 'remote' } };
+  } catch (error) {
+    const message = error instanceof Error ? error.message : 'Could not refresh feed';
+    if (cached) {
+      return {
+        index: cached.index,
+        issue: await issueFromIndex(cached.index),
+        meta: { fetchedAt: cached.fetchedAt, source: 'cache' },
+        error: message,
+      };
     }
+    return bundledFallback(message);
   }
-
-  if (cached) {
-    const issue =
-      (await readCachedIssue(cached.index.latest)) ??
-      bundledIssues[cached.index.latest] ??
-      bundledSample;
-    return {
-      index: cached.index,
-      issue,
-      meta: { fetchedAt: cached.fetchedAt, source: 'cache' },
-    };
-  }
-
-  return bundledFallback();
 }
 
 export async function loadIssue(id: string): Promise<Issue> {
@@ -114,19 +102,13 @@ export async function loadIssue(id: string): Promise<Issue> {
   if (cached) return cached;
   if (bundledIssues[id]) return bundledIssues[id];
 
-  const base = feedBaseUrl();
   const indexState = await readCachedIndex();
   const path =
     indexState?.index.issues.find((entry) => entry.id === id)?.path ?? `reports/${id}.json`;
-
-  if (base) {
-    const issue = parseIssue(await fetchJson(`${base}/${path}`));
-    if (!issue) throw new Error('Invalid issue JSON');
-    await writeCachedIssue(issue);
-    return issue;
-  }
-
-  throw new Error(`Issue ${id} is not available offline`);
+  const issue = parseIssue(await fetchJson(`${feedBaseUrl()}/${path}`));
+  if (!issue) throw new Error('Invalid issue JSON');
+  await writeCachedIssue(issue);
+  return issue;
 }
 
 export async function loadIndex(): Promise<ReportIndex> {

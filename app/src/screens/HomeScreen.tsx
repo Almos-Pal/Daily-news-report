@@ -60,6 +60,7 @@ export function HomeScreen({ navigation }: Props) {
         issue={issue}
         stale={meta ? isStale(meta.fetchedAt) : false}
         error={error}
+        source={meta?.source}
         refreshing={refreshing}
         onRefresh={() => {
           setRefreshing(true);
